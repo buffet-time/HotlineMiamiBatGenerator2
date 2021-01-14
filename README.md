@@ -1,19 +1,3 @@
-# hotlinebatgen2
+A simple tool to creat .bat files for usage in Hotline Miami speedrunning.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Download here: https://github.com/buffet-time/HotlineMiamiBatGenerator2/releases/tag/1.1.0
