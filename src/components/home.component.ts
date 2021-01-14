@@ -16,6 +16,9 @@ export default class Home extends Vue {
 		;(window as any).preload.receive('save-dialog-reply', arg => {
 			if (arg[0]) {
 				this.fileCreated = true
+				setTimeout(() => {
+					this.fileCreated = false
+				}, 5000)
 			}
 		})
 	}

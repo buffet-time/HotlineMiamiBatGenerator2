@@ -12,10 +12,20 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 async function createWindow() {
-	const preload = path.join(__dirname, '/../src/preload.ts')
+	const env = process.env
+	const webpackServerUrl = env.WEBPACK_DEV_SERVER_URL
+
+	let preload: string
+
+	if (webpackServerUrl) {
+		preload = path.join(__dirname, '/../src/preload.ts')
+	} else {
+		preload = path.join(__dirname, 'preload.js')
+	}
+
 	const win = new BrowserWindow({
 		width: 550,
-		height: 370,
+		height: 400,
 		webPreferences: {
 			nodeIntegration: true,
 			contextIsolation: true,
@@ -23,16 +33,21 @@ async function createWindow() {
 		}
 	})
 
+	ipcListeners(win)
 	win.removeMenu()
 
-	if (process.env.WEBPACK_DEV_SERVER_URL) {
-		await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
-		if (!process.env.IS_TEST) win.webContents.openDevTools()
+	if (webpackServerUrl) {
+		await win.loadURL(webpackServerUrl as string)
+		if (!env.IS_TEST) {
+			win.webContents.openDevTools()
+		}
 	} else {
 		createProtocol('app')
 		win.loadURL('app://./index.html')
 	}
+}
 
+function ipcListeners(win: BrowserWindow) {
 	ipcMain.on('directory-dialog-message', async event => {
 		dialog
 			.showOpenDialog(win, {

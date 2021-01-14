@@ -1,6 +1,12 @@
 {
 	"name": "hotlinebatgen2",
-	"version": "1.0.0",
+	"author": {
+		"email": "me@danielTurcich.com",
+		"name": "Daniel Turcich",
+		"url": "https://danielturcich.com/"
+	},
+	"description": "A small app to generate batch files for Hotline Miami New Game Speedruns",
+	"version": "1.1.0",
 	"private": false,
 	"scripts": {
 		"serve": "vue-cli-service serve",

@@ -1,8 +1,8 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('preload', {
-	send: (channel, data) => {
-		let validChannels = [
+	send: (channel: string, data: string[]) => {
+		let validChannels: string[] = [
 			'directory-dialog-message',
 			'file-dialog-message',
 			'save-dialog-message'
@@ -11,8 +11,8 @@ contextBridge.exposeInMainWorld('preload', {
 			ipcRenderer.send(channel, data)
 		}
 	},
-	receive: (channel, func) => {
-		let validChannels = [
+	receive: (channel: string, func: Function) => {
+		let validChannels: string[] = [
 			'directory-dialog-reply',
 			'file-dialog-reply',
 			'save-dialog-reply'
