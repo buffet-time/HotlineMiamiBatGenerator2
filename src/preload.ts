@@ -1,8 +1,8 @@
-const { contextBridge, ipcRenderer } = require('electron')
+import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('preload', {
 	send: (channel: string, data: string[]) => {
-		let validChannels: string[] = [
+		const validChannels: string[] = [
 			'directory-dialog-message',
 			'file-dialog-message',
 			'save-dialog-message'
@@ -11,14 +11,15 @@ contextBridge.exposeInMainWorld('preload', {
 			ipcRenderer.send(channel, data)
 		}
 	},
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	receive: (channel: string, func: Function) => {
-		let validChannels: string[] = [
+		const validChannels: string[] = [
 			'directory-dialog-reply',
 			'file-dialog-reply',
 			'save-dialog-reply'
 		]
 		if (validChannels.includes(channel)) {
-			ipcRenderer.on(channel, (event, ...args) => func(...args))
+			ipcRenderer.on(channel, (_event, ...args) => func(...args))
 		}
 	}
 })

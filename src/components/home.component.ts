@@ -7,13 +7,16 @@ export default class Home extends Vue {
 	public premadeSaveFileDirectory: string = ''
 
 	public async mounted() {
-		;(window as any).preload.receive('directory-dialog-reply', arg => {
-			this.myDocumentsDirectory = arg[0]
-		})
-		;(window as any).preload.receive('file-dialog-reply', arg => {
+		;(window as any).preload.receive(
+			'directory-dialog-reply',
+			(arg: string[]) => {
+				this.myDocumentsDirectory = arg[0]
+			}
+		)
+		;(window as any).preload.receive('file-dialog-reply', (arg: string[]) => {
 			this.premadeSaveFileDirectory = arg[0]
 		})
-		;(window as any).preload.receive('save-dialog-reply', arg => {
+		;(window as any).preload.receive('save-dialog-reply', (arg: any[]) => {
 			if (arg[0]) {
 				this.fileCreated = true
 				setTimeout(() => {

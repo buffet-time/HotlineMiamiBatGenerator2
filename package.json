@@ -1,36 +1,45 @@
 {
 	"name": "hotlinebatgen2",
+	"private": false,
+	"description": "A small app to generate batch files for Hotline Miami New Game Speedruns",
+	"version": "1.1.0",
+	"license": "Unlicense",
 	"author": {
 		"email": "me@danielTurcich.com",
 		"name": "Daniel Turcich",
 		"url": "https://danielturcich.com/"
 	},
-	"description": "A small app to generate batch files for Hotline Miami New Game Speedruns",
-	"version": "1.1.0",
-	"private": false,
+	"main": "background.js",
 	"scripts": {
 		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
+		"build": "vue-cli-service build --modern",
 		"electron:build": "vue-cli-service electron:build",
 		"electron:serve": "vue-cli-service electron:serve",
 		"postinstall": "electron-builder install-app-deps",
 		"postuninstall": "electron-builder install-app-deps"
 	},
-	"main": "background.js",
 	"dependencies": {
 		"core-js": "^3.8.2",
-		"vue": "^3.0.5",
+		"vue": "^3.2.0",
 		"vue-class-component": "^8.0.0-rc.1"
 	},
 	"devDependencies": {
 		"@types/electron-devtools-installer": "^2.2.0",
+		"@typescript-eslint/eslint-plugin": "^4.31.2",
+		"@typescript-eslint/parser": "^4.31.2",
 		"@vue/cli-plugin-babel": "^4.5.10",
 		"@vue/cli-plugin-typescript": "^4.5.10",
 		"@vue/cli-service": "^4.5.10",
 		"@vue/compiler-sfc": "^3.0.5",
-		"electron": "^11.1.1",
+		"@vue/eslint-config-typescript": "^7.0.0",
+		"electron": "^15.0.0",
 		"electron-devtools-installer": "^3.1.0",
-		"typescript": "^4.1.3",
-		"vue-cli-plugin-electron-builder": "~2.0.0-rc.5"
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^8.0.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-vue": "^7.18.0",
+		"typescript": "^4.4.3",
+		"vue-cli-plugin-electron-builder": "^2.1.1",
+		"vue-eslint-parser": "^7.6.0"
 	}
 }

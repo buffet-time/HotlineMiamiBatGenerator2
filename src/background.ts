@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 'use strict'
 
 import { app, protocol, BrowserWindow, ipcMain, dialog } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
-const path = require('path')
-const fs = require('fs')
+import path from 'path'
+import fs from 'fs'
 
 protocol.registerSchemesAsPrivileged([
 	{ scheme: 'app', privileges: { secure: true, standard: true } }
@@ -93,7 +95,7 @@ function ipcListeners(win: BrowserWindow) {
 
 				if (args[0] === 'delete') {
 					fs.writeFile(
-						result.filePath,
+						result.filePath!,
 						`@ECHO OFF\ndel "${args[1]}\\SaveData.sav"`,
 						error => {
 							if (error) {
@@ -103,7 +105,7 @@ function ipcListeners(win: BrowserWindow) {
 					)
 				} else {
 					fs.writeFile(
-						result.filePath,
+						result.filePath!,
 						`@ECHO OFF\ndel "${args[1]}\\SaveData.sav"\ncopy "${args[2]}" "${args[1]}\\"`,
 						error => {
 							if (error) {
@@ -135,7 +137,7 @@ app.on('ready', async () => {
 		try {
 			await installExtension(VUEJS_DEVTOOLS)
 		} catch (e) {
-			console.error('Vue Devtools failed to install:', e.toString())
+			console.error('Vue Devtools failed to install:', (e as any).toString())
 		}
 	}
 	createWindow()
