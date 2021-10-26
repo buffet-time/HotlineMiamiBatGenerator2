@@ -1,5 +1,6 @@
+/// <reference types="vite/client" />
 declare module '*.vue' {
-	import { defineComponent } from 'vue'
-	const Component: ReturnType<typeof defineComponent>
-	export default Component
+	import { DefineComponent } from 'vue'
+	const component: DefineComponent<{}, {}, any>
+	export default component
 }
